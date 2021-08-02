@@ -1,9 +1,6 @@
 const socket = io()
 
-const myPeer = new Peer(undefined, {
-  host: '/',
-  port: '3001'
-})
+const myPeer = new Peer()
 
 socket.emit('join-room', {room: ROOM_ID, userId: 10})
 
