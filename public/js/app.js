@@ -23,7 +23,11 @@ navigator.mediaDevices.getUserMedia({
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
   })
-}).catch(e => console.log(e))
+}).catch(e => {
+  console.log(e)
+  window.alert(e)
+  window.location = '/'
+})
 
 socket.on('user-disconnected', (userId) => {
   if(peers[userId]) peers[userId].close()
