@@ -30,7 +30,7 @@ socket.on('user-disconnected', (userId) => {
 })
 
 myPeer.on('open', id => {
-  socket.emit('join-room', ROOM_ID, id)
+  socket.emit('join-room', {room: ROOM_ID, userId: id, username})
 })
 
 function connectToNewUser(userId, stream){

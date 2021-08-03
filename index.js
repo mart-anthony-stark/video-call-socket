@@ -16,13 +16,15 @@ app.get('/', (req,res) => {
   res.render('index')
 })
 
-app.get('/:id', (req,res) => {
-  res.render('index', {id: req.params.id})
+app.post('/room', (req,res) => {
+  const {username, room} = req.body
+  res.render('room', {room, username})
 })
 
 
 io.on('connection', socket => {
-  socket.on('join-room', (room, userId) => {
+  socket.on('join-room', ({room, userId, username}) => {
+    console.log({room, userId, username})
     socket.join(room)
     socket.broadcast.to(room).emit('user-connected', userId)
 
